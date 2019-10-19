@@ -1,11 +1,11 @@
 import World from "../../engine/World";
-import {  MousePlayer } from "../../engine/entities";
+import {  KeyboardPlayer } from "../../engine/entities";
 
 class GameWorld extends World {
-    private player: MousePlayer = null;
+    private player: KeyboardPlayer = null;
 
     protected init (): void {
-        this.player = new MousePlayer();
+        this.player = new KeyboardPlayer();
         this.addSprite(this.player);
     }
 }

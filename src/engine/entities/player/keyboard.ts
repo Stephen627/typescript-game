@@ -11,6 +11,7 @@ export type HeldButtons = {
 }
 
 class Player extends Movable {
+    protected movementRate = 2;
     protected height: number = 16;
     protected width: number = 16;
     protected heldButtons: HeldButtons = {
@@ -18,12 +19,14 @@ class Player extends Movable {
         a: false,
         s: false,
         d: false
-    }
+    };
 
     public init () {
         this.images = [
             playerImage,
-            playerImage2
+        ];
+        this.movementImages = [
+            playerImage2,
         ];
         this.registerEvents();
     }
@@ -37,7 +40,7 @@ class Player extends Movable {
         }
         if (this.heldButtons.s) {
             this.moveDown()
-        };
+        }
         if (this.heldButtons.d) {
             this.moveRight();
         }

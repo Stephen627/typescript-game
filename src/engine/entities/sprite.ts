@@ -9,7 +9,7 @@ export type Image = {
 }
 
 abstract class Sprite {
-    protected images: Array<string> = [];
+    protected images: Array<string>;
     protected width: number;
     protected height: number;
     protected frameChangeDelay: number = 15;
@@ -18,20 +18,27 @@ abstract class Sprite {
         y: 0
     };
 
-    private imageElements: Array<Image> = [];
+    private readonly imageElements: Array<Image> = [];
     private nextImageIndex: number = 0;
     
 
     public constructor () {
         this.init();
-        this.images.forEach((image: string) => {
+        this.imageElements = this.loadImages(this.images);
+    }
+
+    public loadImages (images: Array<string>): Array<Image> {
+        const imageElements: Array<Image> = [];
+        images.forEach((image: string) => {
             const imgEl: HTMLImageElement = new Image();
             imgEl.src = image;
-            this.imageElements.push({
+            imageElements.push({
                 hasLoaded: false,
                 data: imgEl
             });
         });
+
+        return imageElements;
     }
 
     /**
@@ -41,18 +48,23 @@ abstract class Sprite {
      * @return string
      */
     public getImage (): Image|null {
-        if (this.imageElements.length === 0) {
+        const imageElements = this.getImageElements();
+        if (imageElements.length === 0) {
             return null;
         }
 
         let index: number = Math.ceil(this.nextImageIndex / this.frameChangeDelay) - 1;
-        if (typeof this.imageElements[index] === 'undefined') {
+        if (typeof imageElements[index] === 'undefined') {
             index = 0;
             this.nextImageIndex = 0;
         }
 
         this.nextImageIndex += 1;
-        return this.imageElements[index];
+        return imageElements[index];
+    }
+
+    public getImageElements (): Array<Image> {
+        return this.imageElements;
     }
 
     public getX (): number {
@@ -70,7 +82,7 @@ abstract class Sprite {
     public getHeight (): number {
         return this.height;
     }
-    
+
     /**
      * Initialise the sprite (get the image loaded etc)
      */

@@ -1,7 +1,7 @@
 {
   "name": "game",
   "version": "0.0.0",
-  "description": "I wanted to try and learn more about typescript and how it is used in a project, so I thought making a game would help.",
+  "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack --config webpack.dev.js",
