@@ -11,9 +11,9 @@ export type HeldButtons = {
 }
 
 class Player extends Movable {
-    protected movementRate = 2;
-    protected height: number = 16;
-    protected width: number = 16;
+    protected movementRate = 5;
+    protected height: number = 50;
+    protected width: number = 50;
     protected heldButtons: HeldButtons = {
         w: false,
         a: false,

@@ -1,7 +1,4 @@
-export type Coordinates = {
-    x: number,
-    y: number
-}
+import { Coordinates } from "../index";
 
 export type Image = {
     hasLoaded: boolean,
@@ -73,6 +70,14 @@ abstract class Sprite {
 
     public getY (): number {
         return this.coords.y;
+    }
+
+    public setX (x: number): void {
+        this.coords.x = x;
+    }
+
+    public setY (y: number): void {
+        this.coords.y = y;
     }
 
     public getWidth (): number {

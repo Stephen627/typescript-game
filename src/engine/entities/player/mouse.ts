@@ -1,5 +1,5 @@
 import Movable from '../movable';
-import { Coordinates } from '../sprite';
+import { Coordinates } from "../../index";
 
 const playerImage  = require('../../../assets/player.png');
 const playerImage2 = require('../../../assets/player2.png');
@@ -33,11 +33,6 @@ class Mouse extends Movable {
 
         if (this.coords.x <= this.goTo.x - this.movementRate || this.coords.x >= this.goTo.x + this.movementRate) {
             this.coords.x += this.goTo.x < this.coords.x
-                ? this.movementRate * -1
-                : this.movementRate;
-        }
-        if (this.coords.y <= this.goTo.y - this.movementRate || this.coords.y >= this.goTo.y + this.movementRate) {
-            this.coords.y += this.goTo.y < this.coords.y
                 ? this.movementRate * -1
                 : this.movementRate;
         }
